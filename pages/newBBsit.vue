@@ -19,7 +19,7 @@
               mdi-send
             </v-icon>
           </v-btn> -->
-          <confirmation :disabled="!isValid" :data="dataBbsit"></confirmation>
+          <!-- <confirmation :disabled="!isValid" :data="dataBbsit"></confirmation> -->
         </v-col>
       </v-row>
 
@@ -116,8 +116,6 @@
 </template>
 
 <script>
-import { groq } from "@nuxtjs/sanity";
-
 import createClient from "@sanity/client";
 import confirmation from "../components/confirmation.vue";
 
@@ -157,8 +155,7 @@ export default {
   methods: {
     hasHistory() {
       return window.history.length > 2;
-    },
-    test() {}
+    }
   },
   computed: {
     dataBbsit() {
@@ -175,5 +172,3 @@ export default {
   }
 };
 </script>
-
-<style scoped></style>

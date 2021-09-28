@@ -1,19 +1,7 @@
 <template>
   <v-app>
-    <!-- <v-app-bar app dense>
-      
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon @click="share">
-        <v-icon>
-          mdi-share-variant
-        </v-icon>
-      </v-btn>
-    </v-app-bar> -->
-
     <v-main>
-      <v-container class="blur">
+      <v-container>
         <Nuxt></Nuxt>
       </v-container>
     </v-main>
