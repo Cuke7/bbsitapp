@@ -19,7 +19,7 @@
               mdi-send
             </v-icon>
           </v-btn> -->
-          <!-- <confirmation :disabled="!isValid" :data="dataBbsit"></confirmation> -->
+          <confirmation :disabled="!isValid" :data="dataBbsit"></confirmation>
         </v-col>
       </v-row>
 
