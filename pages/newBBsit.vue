@@ -19,150 +19,89 @@
               mdi-send
             </v-icon>
           </v-btn> -->
-          <confirmation :data="dataBbsit"></confirmation>
+          <confirmation :disabled="!isValid" :data="dataBbsit"></confirmation>
         </v-col>
       </v-row>
 
       <v-card-text>
-        <v-card-title class="pl-1">Détails du babysitting</v-card-title>
+        <v-card-title class="pl-1">Ajouter un bbitting</v-card-title>
+        <v-form v-model="isValid">
+          <v-text-field
+            label="Nom des parents"
+            v-model="parentName"
+            autocomplete="new"
+            :rules="[rules.required]"
+          >
+            <template v-slot:prepend>
+              <v-icon v-if="alternative" color="UI">
+                mdi-account
+              </v-icon>
+            </template>
+          </v-text-field>
 
-        <v-text-field
-          label="Nom des parents"
-          v-model="parentName"
-          autocomplete="new"
-        >
-          <template v-slot:prepend>
-            <v-icon v-if="alternative" color="UI">
-              mdi-account
-            </v-icon>
-          </template>
-        </v-text-field>
+          <v-text-field
+            label="Numéro de téléphone"
+            v-model="phoneNumber"
+            autocomplete="new"
+            :rules="[rules.required]"
+          >
+            <template v-slot:prepend>
+              <v-icon v-if="alternative" color="UI">
+                mdi-phone
+              </v-icon>
+            </template>
+          </v-text-field>
 
-        <v-text-field
-          label="Numéro de téléphone"
-          v-model="phoneNumber"
-          autocomplete="new"
-        >
-          <template v-slot:prepend>
-            <v-icon v-if="alternative" color="UI">
-              mdi-phone
-            </v-icon>
-          </template>
-        </v-text-field>
+          <v-text-field
+            label="Adresse"
+            v-model="adress"
+            autocomplete="new"
+            :rules="[rules.required]"
+          >
+            <template v-slot:prepend>
+              <v-icon v-if="alternative" color="UI">
+                mdi-map-marker
+              </v-icon>
+            </template>
+          </v-text-field>
 
-        <v-text-field label="Adresse" v-model="adress" autocomplete="new">
-          <template v-slot:prepend>
-            <v-icon v-if="alternative" color="UI">
-              mdi-map-marker
-            </v-icon>
-          </template>
-        </v-text-field>
+          <v-text-field
+            v-model="date"
+            label="Date"
+            prepend-icon="mdi-calendar"
+            :rules="[rules.date]"
+          >
+            <template v-slot:prepend>
+              <v-icon v-if="alternative" color="UI">
+                mdi-calendar
+              </v-icon>
+            </template>
+          </v-text-field>
 
-        <v-menu
-          ref="menu"
-          v-model="menu"
-          :close-on-content-click="false"
-          :return-value.sync="date"
-          transition="scale-transition"
-          offset-y
-          min-width="auto"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-text-field
-              v-model="date"
-              label="Date"
-              prepend-icon="mdi-calendar"
-              v-bind="attrs"
-              v-on="on"
-            >
-              <template v-slot:prepend>
-                <v-icon v-if="alternative" color="UI">
-                  mdi-calendar
-                </v-icon>
-              </template>
-            </v-text-field>
-          </template>
-          <v-date-picker v-model="date" no-title scrollable>
-            <v-spacer></v-spacer>
-            <v-btn text color="primary" @click="menu = false">
-              Annuler
-            </v-btn>
-            <v-btn text color="primary" @click="$refs.menu.save(date)">
-              Valider
-            </v-btn>
-          </v-date-picker>
-        </v-menu>
-
-        <v-row justify="space-between">
-          <v-col cols="5">
-            <v-menu
-              ref="menu2"
-              v-model="menu2"
-              :close-on-content-click="false"
-              :nudge-right="40"
-              :return-value.sync="startHour"
-              transition="scale-transition"
-              offset-y
-              max-width="290px"
-              min-width="290px"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  v-model="startHour"
-                  label="Début"
-                  prepend-icon="mdi-clock-time-four-outline"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  <template v-slot:prepend>
-                    <v-icon v-if="alternative" color="UI">
-                      mdi-clock
-                    </v-icon>
-                  </template>
-                </v-text-field>
-              </template>
-              <v-time-picker
-                v-if="menu2"
+          <v-row justify="space-between">
+            <v-col cols="5">
+              <v-text-field
                 v-model="startHour"
-                full-width
-                @click:minute="$refs.menu2.save(startHour)"
-                format="24hr"
-              ></v-time-picker>
-            </v-menu>
-          </v-col>
-          <v-col cols="5">
-            <v-menu
-              ref="menu3"
-              v-model="menu3"
-              :close-on-content-click="false"
-              :nudge-right="40"
-              :return-value.sync="endHour"
-              transition="scale-transition"
-              offset-y
-              max-width="290px"
-              min-width="290px"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  v-model="endHour"
-                  label="Fin"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                </v-text-field>
-              </template>
-              <v-time-picker
-                v-if="menu3"
+                label="Début"
+                :rules="[rules.required]"
+              >
+                <template v-slot:prepend>
+                  <v-icon v-if="alternative" color="UI">
+                    mdi-clock
+                  </v-icon>
+                </template>
+              </v-text-field>
+            </v-col>
+            <v-col cols="5">
+              <v-text-field
                 v-model="endHour"
-                full-width
-                @click:minute="$refs.menu3.save(endHour)"
-                format="24hr"
-              ></v-time-picker>
-            </v-menu>
-          </v-col>
-        </v-row>
+                label="Fin"
+                :rules="[rules.required]"
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
+        </v-form>
       </v-card-text>
 
       <v-textarea
@@ -196,7 +135,7 @@ export default {
   layout: "subpage",
   data: () => ({
     details: "",
-    parentName: "Karen",
+    parentName: "",
     adress: "",
     phoneNumber: "",
     date: "",
@@ -205,12 +144,23 @@ export default {
     menu: false,
     menu2: false,
     menu3: false,
-    alternative: true
+    alternative: true,
+    rules: {
+      date: value => {
+        const pattern = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+        return (
+          pattern.test(value) || "Format de la date : jj/mm/aaaa ou jj/mm/aa."
+        );
+      },
+      required: value => !!value || "Requis."
+    },
+    isValid: false
   }),
   methods: {
     hasHistory() {
       return window.history.length > 2;
-    }
+    },
+    test() {}
   },
   computed: {
     dataBbsit() {
@@ -227,3 +177,5 @@ export default {
   }
 };
 </script>
+
+<style scoped></style>

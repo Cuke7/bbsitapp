@@ -1,16 +1,32 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" md="10">
-      <v-row justify="space-between" align="center">
-        <v-col cols="auto" class="ma-4">
-          <v-btn nuxt to="newBBsit" fab color="UI">
+      <v-row align="center">
+        <v-col cols="auto">
+          <v-btn nuxt to="newBBsit" fab color="UI" :disabled="!currentUser">
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </v-col>
-
-        <v-col cols="auto" class="ma-4">
-          <v-btn fab color="UI">
-            <v-icon>mdi-account-circle</v-icon>
+        <v-col cols="6" v-if="!currentUser">
+          Se connecter pour ajouter un bbsiting
+        </v-col>
+        <v-spacer></v-spacer>
+        <v-col cols="auto" v-if="currentUser">
+          Mon compte
+        </v-col>
+        <v-col cols="auto">
+          <v-btn fab color="UI" nuxt to="/login">
+            <v-icon v-if="!currentUser">mdi-login</v-icon>
+            <div v-else>
+              <v-avatar
+                size="50"
+                v-if="currentUser.photoURL"
+                class="text--center"
+              >
+                <img v-bind:src="currentUser.photoURL" />
+              </v-avatar>
+              <v-icon v-else>mdi-account-circle</v-icon>
+            </div>
           </v-btn>
         </v-col>
       </v-row>
@@ -24,7 +40,7 @@
           sm="6"
           lg="4"
         >
-          <bbsit :data="data"></bbsit>
+          <bbsit :data="data" class="my-2"></bbsit>
         </v-col>
       </v-row>
     </v-col>
@@ -57,6 +73,12 @@ export default {
     let arr = await client.fetch(query);
     this.bbsitData = arr.reverse();
     console.log(this.bbsitData);
+  },
+
+  computed: {
+    currentUser() {
+      return this.$store.state.user;
+    }
   },
 
   mounted: function() {

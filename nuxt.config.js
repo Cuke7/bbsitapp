@@ -34,7 +34,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  // modules: ["@nuxtjs/axios", "@nuxtjs/auth-next"],
+  modules: ["@nuxtjs/firebase"],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -43,12 +43,12 @@ export default {
       dark: true,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
+          primary: colors.lime.darken2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
+          error: colors.lime.darken2,
           success: colors.green.accent3,
           UI: colors.lime.darken2
         }
@@ -57,7 +57,7 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
 
   // auth: {
   //   strategies: {
@@ -72,7 +72,31 @@ export default {
 
   // router: {
   //   middleware: ["auth"]
-  // }
+  // },
+
+  firebase: {
+    config: {
+      apiKey: "AIzaSyC10MnYf5_4Nm4wtsvRfaKe1UJyKJ9Eq5w",
+      authDomain: "bbsitapp-1b591.firebaseapp.com",
+      projectId: "bbsitapp-1b591",
+      storageBucket: "bbsitapp-1b591.appspot.com",
+      messagingSenderId: "1093775072520",
+      appId: "1:1093775072520:web:5e9a280e8772b44877a0bd"
+    },
+    services: {
+      auth: true // Just as example. Can be any other service.
+    },
+    services: {
+      auth: {
+        // it is recommended to configure either a mutation or action but you can set both
+        initialize: {
+          onAuthStateChangedMutation: "ON_AUTH_STATE_CHANGED_MUTATION"
+          // onAuthStateChangedAction: 'onAuthStateChangedAction'
+        },
+        persistence: "local" // default
+      }
+    }
+  }
 };
 
 // 366728592323-8o1tbqashorqa33sjjmmulv4mk5on8sj.apps.googleusercontent.com

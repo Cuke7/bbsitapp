@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="374">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="UI" icon v-bind="attrs" v-on="on">
+        <v-btn color="UI" icon v-bind="attrs" v-on="on" :disabled="disabled">
           <v-icon>
             mdi-send
           </v-icon>
@@ -76,7 +76,7 @@ const client = createClient({
 });
 
 export default {
-  props: ["data"],
+  props: ["data", "disabled"],
   data() {
     return {
       dialog: false,
@@ -92,10 +92,10 @@ export default {
         parentName: this.data.parentName,
         phoneNumber: this.data.phoneNumber,
         adress: this.data.adress,
+        date: this.data.date,
         startHour: this.data.startHour,
         endHour: this.data.endHour,
-        details: this.data.details,
-        name: "Sanity Tandem Extraordinaire"
+        details: this.data.details
       };
 
       this.loading = true;
