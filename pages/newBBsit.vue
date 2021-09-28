@@ -125,7 +125,7 @@ const client = createClient({
   projectId: "djx9uviv",
   dataset: "production",
   apiVersion: "2021-03-25", // use current UTC date - see "specifying API version"!
-  token: process.env.APIKEY
+  token: process.env.NUXT_ENV_APIKEY
   // useCdn: true // `false` if you want to ensure fresh data
 });
 
