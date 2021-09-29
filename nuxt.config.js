@@ -35,7 +35,22 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/firebase"],
+  modules: ["@nuxtjs/firebase", "@nuxtjs/pwa"],
+
+  pwa: {
+    manifest: {
+      name: "BBsitApp",
+      lang: "fr",
+      theme_color: "#841e79",
+      background_color: "#841e79",
+      short_name: "Auditere",
+      display: "standalone"
+    },
+    icon: {
+      source: "/icon.png",
+      fileName: "icon.png"
+    }
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
