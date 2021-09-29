@@ -83,6 +83,18 @@ export default {
       loading: false
     };
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.user;
+    },
+    currentDate() {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      var yyyy = today.getFullYear();
+      return dd + "/" + mm + "/" + yyyy;
+    }
+  },
   methods: {
     sendData() {
       console.log("Send data");
@@ -95,7 +107,9 @@ export default {
         date: this.data.date,
         startHour: this.data.startHour,
         endHour: this.data.endHour,
-        details: this.data.details
+        details: this.data.details,
+        postedBy: this.currentUser.displayName,
+        postedAt: this.currentDate
       };
 
       this.loading = true;

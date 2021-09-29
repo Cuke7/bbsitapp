@@ -36,10 +36,7 @@
       </div>
       {{ data.details }}
     </v-card-text>
-
-    <v-divider></v-divider>
-
-    <v-card-text>
+    <v-card-text class="pt-0">
       <v-chip color="lime darken-4">
         <v-icon left> mdi-calendar </v-icon>{{ data.date }}</v-chip
       >
@@ -47,6 +44,14 @@
         <v-icon left> mdi-clock </v-icon>{{ data.startHour }} -
         {{ data.endHour }}</v-chip
       >
+    </v-card-text>
+    <v-divider></v-divider>
+    <v-card-text>
+      <v-row>
+        <v-col cols="auto"
+          >Posté le {{ this.data.postedAt }} par {{ this.data.postedBy }}</v-col
+        >
+      </v-row>
     </v-card-text>
   </v-card>
 </template>

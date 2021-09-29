@@ -152,6 +152,17 @@ export default {
     },
     isValid: false
   }),
+  watch: {
+    date(val) {
+      if (!isNaN(val[0]) && !isNaN(val[1]) && val.length == 2) {
+        this.date += "/";
+      }
+
+       if (!isNaN(val[3]) && !isNaN(val[4]) && val.length == 5) {
+        this.date += "/";
+      }
+    }
+  },
   methods: {
     hasHistory() {
       return window.history.length > 2;

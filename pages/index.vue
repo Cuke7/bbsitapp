@@ -21,7 +21,7 @@
               <v-icon v-if="!currentUser">mdi-login</v-icon>
               <div v-else>
                 <v-avatar
-                  size="50"
+                  size="57"
                   v-if="currentUser.photoURL"
                   class="text--center"
                 >
