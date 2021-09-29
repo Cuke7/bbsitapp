@@ -43,8 +43,9 @@ export default {
       lang: "fr",
       theme_color: "#841e79",
       background_color: "#841e79",
-      short_name: "Auditere",
-      display: "standalone"
+      short_name: "BBsitApp",
+      display: "standalone",
+      start_url: "/"
     },
     icon: {
       source: "/icon.png",
