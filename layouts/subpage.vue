@@ -38,7 +38,7 @@ export default {
 <style scoped>
 .v-main {
   background-image: linear-gradient(
-    to right bottom,
+    to right top,
     #0051c9,
     #5c40b0,
     #782f95,

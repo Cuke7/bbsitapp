@@ -130,6 +130,27 @@ const client = createClient({
 export default {
   components: { confirmation },
   layout: "subpage",
+  beforeRouteLeave(to, from, next) {
+    if (
+      this.details == "" &&
+      this.parentName == "" &&
+      this.adress == "" &&
+      this.phoneNumber == "" &&
+      this.date == "" &&
+      this.startHour == "" &&
+      this.endHour == ""
+    ) {
+      return next();
+    } else {
+      if (
+        confirm(
+          "Attention, si vous quittez, vous allez perdre ce que vous avez écrit."
+        )
+      ) {
+        return next();
+      }
+    }
+  },
   data: () => ({
     details: "",
     parentName: "",
@@ -158,7 +179,7 @@ export default {
         this.date += "/";
       }
 
-       if (!isNaN(val[3]) && !isNaN(val[4]) && val.length == 5) {
+      if (!isNaN(val[3]) && !isNaN(val[4]) && val.length == 5) {
         this.date += "/";
       }
     }

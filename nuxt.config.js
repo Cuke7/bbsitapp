@@ -48,8 +48,8 @@ export default {
       start_url: "/"
     },
     icon: {
-      source: "/icon.png",
-      fileName: "icon.png"
+      source: "/icon2.png",
+      fileName: "icon2.png"
     }
   },
 
