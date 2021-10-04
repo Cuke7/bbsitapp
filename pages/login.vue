@@ -106,7 +106,11 @@
         </v-row>
 
         <div v-if="!register" class="mt-12">
-          <send-password-reset></send-password-reset>
+          <send-password-reset
+            :email="email"
+            @emailSent="emailSent"
+            @incorectEmail="incorectEmail"
+          ></send-password-reset>
         </div>
 
         <!-- <v-row justify="center" align="center" class="mt-12">
@@ -163,6 +167,14 @@ export default {
     }
   },
   methods: {
+    incorectEmail() {
+      this.errorMessage = "Erreur, format de l'adresse email incorrect.";
+      this.errorSnackbar = true;
+    },
+    emailSent() {
+      this.errorMessage = "Email pour le mot de passe oublié envoyé.";
+      this.errorSnackbar = true;
+    },
     signOut() {
       console.log("signOut");
       // this.$fireAuth.signOut()
