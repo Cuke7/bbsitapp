@@ -105,6 +105,10 @@
         </v-col> -->
         </v-row>
 
+        <div v-if="!register" class="mt-12">
+          <send-password-reset></send-password-reset>
+        </div>
+
         <!-- <v-row justify="center" align="center" class="mt-12">
         <v-btn color="grey" @click="signOut()">DÉCONNEXION</v-btn>
       </v-row> -->
@@ -130,7 +134,9 @@
 </template>
 
 <script>
+import sendPasswordReset from "../components/sendPasswordReset.vue";
 export default {
+  components: { sendPasswordReset },
   layout: "loginLayout",
   data: () => ({
     name: "",
@@ -217,6 +223,7 @@ export default {
     },
     googleLogin() {
       var provider = new this.$fireModule.auth.GoogleAuthProvider();
+      this.$fireModule.auth().useDeviceLanguage();
       this.$fireModule
         .auth()
         .signInWithPopup(provider)

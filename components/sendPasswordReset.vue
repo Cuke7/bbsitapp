@@ -2,11 +2,9 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="374">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="UI" icon v-bind="attrs" v-on="on" :disabled="disabled">
-          <v-icon>
-            mdi-send
-          </v-icon>
-        </v-btn>
+        <a color="UI" icon v-bind="attrs" v-on="on" :disabled="disabled">
+          Mot de passe oublié ?
+        </a>
       </template>
       <v-card class="dialog">
         <v-card-title class="text-h5">
@@ -68,60 +66,22 @@ const client = createClient({
   projectId: "djx9uviv",
   dataset: "production",
   apiVersion: "2021-03-25", // use current UTC date - see "specifying API version"!
-  token: process.env.NUXT_ENV_APIKEY
+  token:
+    "sk8de6z5DrYHFWnu6NIJAHELXUQuwYiJlxwpy7VMV0Qlzuw3vCnvMGyvzI7hq4GnzJm7FSIE7q5SQtPFQccUeUcOR26ZXG929MUSR3zNA4aUliYO0DXz3c38Brd5cDvH91wcp4x2XU5OK1NjeAhaxoUSSNSYjyMgvZVY6jDqMLwUQskaWH9U" // or leave blank for unauthenticated usage
   // useCdn: true // `false` if you want to ensure fresh data
 });
 
 export default {
-  props: ["data", "disabled"],
+  //   props: ["data", "disabled"],
   data() {
-    return {
-      dialog: false,
-      loading: false
-    };
+    return {};
   },
   computed: {
     currentUser() {
       return this.$store.state.user;
-    },
-    currentDate() {
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2, "0");
-      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-      var yyyy = today.getFullYear();
-      return dd + "/" + mm + "/" + yyyy;
     }
   },
-  methods: {
-    sendData() {
-      console.log("Send data");
-
-      const doc = {
-        _type: "bbsit",
-        parentName: this.data.parentName,
-        phoneNumber: this.data.phoneNumber,
-        adress: this.data.adress,
-        date: this.data.date,
-        startHour: this.data.startHour,
-        endHour: this.data.endHour,
-        details: this.data.details,
-        postedBy: this.currentUser.displayName,
-        postedAt: this.currentDate
-      };
-
-      this.loading = true;
-
-      console.log(doc);
-
-      client.create(doc).then(res => {
-        this.loading = false;
-        console.log(`doc created ${res._id}`);
-        this.$router.push({
-          path: "/"
-        });
-      });
-    }
-  }
+  methods: {}
 };
 </script>
 
