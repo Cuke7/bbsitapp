@@ -74,10 +74,14 @@ const client = createClient({
 
 export default {
   props: ["data", "disabled"],
+  mounted() {
+    this.sucessPost = false;
+  },
   data() {
     return {
       dialog: false,
-      loading: false
+      loading: false,
+      sucessPost: false
     };
   },
   computed: {
@@ -116,6 +120,7 @@ export default {
       client.create(doc).then(res => {
         this.loading = false;
         console.log(`doc created ${res._id}`);
+        this.sucessPost = true;
         this.$router.push({
           path: "/"
         });

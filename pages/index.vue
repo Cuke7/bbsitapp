@@ -33,19 +33,21 @@
           </v-col>
         </client-only>
       </v-row>
-      <v-row v-masonry>
-        <v-col
-          v-masonry-tile
-          class="item py-0"
-          v-for="data in bbsitData"
-          :key="data.id"
-          cols="12"
-          sm="6"
-          lg="4"
-        >
-          <bbsit :data="data" class="my-2"></bbsit>
-        </v-col>
-      </v-row>
+      <div class="pa-4">
+        <v-row v-masonry>
+          <v-col
+            v-masonry-tile
+            class="item"
+            v-for="data in bbsitData"
+            :key="data.id"
+            cols="12"
+            sm="6"
+            lg="4"
+          >
+            <bbsit :data="data" class="my-1"></bbsit>
+          </v-col>
+        </v-row>
+      </div>
     </v-col>
   </v-row>
 </template>

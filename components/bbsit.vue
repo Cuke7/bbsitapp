@@ -47,10 +47,17 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-card-text>
-      <v-row>
-        <v-col cols="auto"
-          >Posté le {{ this.data.postedAt }} par {{ this.data.postedBy }}</v-col
-        >
+      <v-row align="center" justify="space-between">
+        <v-col cols="auto" class="text-caption">
+          {{ this.data.postedAt }} par {{ this.data.postedBy }}
+        </v-col>
+        <v-col cols="auto">
+          <v-btn icon class="text-caption" @click="share(data._id)">
+            <v-icon>
+              mdi-share-variant
+            </v-icon>
+          </v-btn>
+        </v-col>
       </v-row>
     </v-card-text>
   </v-card>
@@ -62,6 +69,20 @@ export default {
   data: () => ({
     loading: false,
     show: false
-  })
+  }),
+  methods: {
+    share(id) {
+      if (navigator.share) {
+        navigator
+          .share({
+            title: "BBsitApp",
+            text: "Partager le bbsitting",
+            url: window.location.href + id
+          })
+          .then(() => console.log("Shared!"))
+          .catch(error => console.log("Error sharing", error));
+      }
+    }
+  }
 };
 </script>

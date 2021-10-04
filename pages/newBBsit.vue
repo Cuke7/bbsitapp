@@ -1,8 +1,8 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+    <v-col cols="10" sm="8" md="6">
       <v-row justify="space-between" align="center">
-        <v-col cols="auto" class="ma-4">
+        <v-col cols="auto" class="ma-4 mx-12">
           <v-btn
             icon
             color="UI"
@@ -19,7 +19,11 @@
               mdi-send
             </v-icon>
           </v-btn> -->
-          <confirmation :disabled="!isValid" :data="dataBbsit"></confirmation>
+          <confirmation
+            :disabled="!isValid"
+            :data="dataBbsit"
+            ref="confirmation"
+          ></confirmation>
         </v-col>
       </v-row>
 
@@ -123,13 +127,14 @@ export default {
   layout: "subpage",
   beforeRouteLeave(to, from, next) {
     if (
-      this.details == "" &&
-      this.parentName == "" &&
-      this.adress == "" &&
-      this.phoneNumber == "" &&
-      this.date == "" &&
-      this.startHour == "" &&
-      this.endHour == ""
+      (this.details == "" &&
+        this.parentName == "" &&
+        this.adress == "" &&
+        this.phoneNumber == "" &&
+        this.date == "" &&
+        this.startHour == "" &&
+        this.endHour == "") ||
+      this.$refs.confirmation.sucessPost == true
     ) {
       return next();
     } else {
