@@ -33,7 +33,7 @@
           </v-col>
         </client-only>
       </v-row>
-      <div class="pa-4">
+      <div class="pa-5">
         <v-row v-masonry>
           <v-col
             v-masonry-tile
