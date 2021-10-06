@@ -1,8 +1,8 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="10" sm="8" md="6">
+    <v-col cols="12" sm="8" md="6">
       <v-row justify="space-between" align="center">
-        <v-col cols="auto" class="ma-4 mx-12">
+        <v-col cols="auto" class="ma-4">
           <v-btn
             icon
             color="UI"
