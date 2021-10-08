@@ -4,6 +4,8 @@
     class="mx-auto"
     max-width="374"
     color="rgb(255, 255, 255, 0.1)"
+    nuxt
+    :to="data._id"
   >
     <!-- <template slot="progress">
       <v-progress-linear
@@ -76,7 +78,7 @@ export default {
         navigator
           .share({
             title: "BBsitApp",
-            text: "Partager le bbsitting",
+            text: "J'ai trouvé un baby sitting qui peux vous intéresser :",
             url: window.location.href + id
           })
           .then(() => console.log("Shared!"))
