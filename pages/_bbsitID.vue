@@ -3,11 +3,7 @@
     <v-col cols="12" sm="8" md="6">
       <v-row justify="space-between" align="center">
         <v-col cols="auto" class="ma-4">
-          <v-btn
-            icon
-            color="UI"
-            @click="hasHistory() ? $router.go(-1) : $router.push('/')"
-          >
+          <v-btn icon color="UI" @click="$router.push('/')">
             <v-icon>
               mdi-arrow-left
             </v-icon>

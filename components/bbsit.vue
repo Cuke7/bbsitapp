@@ -4,8 +4,7 @@
     class="mx-auto"
     max-width="374"
     color="rgb(255, 255, 255, 0.1)"
-    nuxt
-    :to="data._id"
+    @click="navigate()"
   >
     <!-- <template slot="progress">
       <v-progress-linear
@@ -38,7 +37,7 @@
       </div>
       {{ data.details }}
     </v-card-text>
-    <v-card-text class="pt-0">
+    <v-card-text class="pt-0" nuxt :to="data._id">
       <v-chip color="lime darken-4">
         <v-icon left> mdi-calendar </v-icon>{{ data.date }}</v-chip
       >
@@ -54,7 +53,7 @@
           {{ this.data.postedAt }} par {{ this.data.postedBy }}
         </v-col>
         <v-col cols="auto">
-          <v-btn icon class="text-caption" @click="share(data._id)">
+          <v-btn icon class="text-caption" @click.stop="share()">
             <v-icon>
               mdi-share-variant
             </v-icon>
@@ -73,13 +72,16 @@ export default {
     show: false
   }),
   methods: {
-    share(id) {
+    navigate() {
+      this.$router.push("/" + this.data._id);
+    },
+    share() {
       if (navigator.share) {
         navigator
           .share({
             title: "BBsitApp",
             text: "J'ai trouvé un baby sitting qui peux vous intéresser :",
-            url: window.location.href + id
+            url: window.location.href + this.data._id
           })
           .then(() => console.log("Shared!"))
           .catch(error => console.log("Error sharing", error));
