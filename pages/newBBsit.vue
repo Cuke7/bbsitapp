@@ -48,6 +48,7 @@
             v-model="phoneNumber"
             autocomplete="new"
             :rules="[rules.required]"
+            type="number"
           >
             <template v-slot:prepend>
               <v-icon color="UI">
