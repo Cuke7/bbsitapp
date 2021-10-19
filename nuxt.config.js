@@ -3,8 +3,8 @@ import colors from "vuetify/es5/util/colors";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - AppMel",
-    title: "AppMel",
+    titleTemplate: "BBsit",
+    title: "BBsit",
     htmlAttrs: {
       lang: "en"
     },
@@ -52,8 +52,8 @@ export default {
       start_url: "/"
     },
     icon: {
-      source: "/icon.png",
-      fileName: "icon.png"
+      source: "/icon_bbsit.png",
+      fileName: "icon_bbsit.png"
     }
   },
 
